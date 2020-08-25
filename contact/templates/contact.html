@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load widget_tweaks %}
+
+<form class="contact-form"  method="POST" novalidate>
+  {% csrf_token %}
+
+  {% for hidden_field in form.hidden_fields %}
+    {{ hidden_field }}
+  {% endfor %}
+
+  {% if form.non_field_errors %}
+    <div class="alert alert-danger" role="alert">
+      {% for error in form.non_field_errors %}
+        {{ error }}
+      {% endfor %}
+      </div>
+      {% endif %}
+     {% if messages %}
+    <div class="alert alert-success" role="alert">
+    {% for message in messages %}
+        {{ message }}
+    {% endfor %}
+</div>
+ {% endif %} 
+
+    <div class="justify-content-center container">
+  {% for field in form.visible_fields %}
+    <div class="form-group">
+      <span class="form-tags">{{ field.label_tag }}</span>
+
+      {% if form.is_bound %}
+        {% if field.errors %}
+          {% render_field field class="form-control is-invalid mx-auto" %}
+          {% for error in field.errors %}
+            <div class="invalid-feedback">
+              <span class="form-errors">{{ error }}</span>
+            </div>
+          {% endfor %}
+        {% else %}
+          {% render_field field class="form-control form-control-lg is-valid mx-auto" %}
+        {% endif %}
+      {% else %}
+        {% render_field field class="form-control form-control-lg mx-auto" %}
+      {% endif %}
+
+      {% if field.help_text %}
+        <small class="form-text text-muted">{{ field.help_text }}</small>
+      {% endif %}
+    </div>
+  {% endfor %}
+    <button type="submit" class="nav-link book-button text-center col-4 mx-auto">Send</button>
+ {% endblock %} 
+  </div>
+</form>
