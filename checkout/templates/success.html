@@ -1,14 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-<div style="margin-top: 50px">
-    {% if messages %}
-    <div class="alert alert-success" role="alert">
-    {% for message in messages %}
-    {{ message }}
-    {% endfor %}
+<div class="accountform text-center">
+    <h1 class="card-header form-header">Thank you for your booking.<br>An email has been sent to you as a reminder.</h1>
+    <a class="nav-link book-button col-6 mx-auto text-center" href="/">Go To Homepage</a>
+    <p></p>
 </div>
-</div>
- {% endif %} 
 
 {% endblock %}

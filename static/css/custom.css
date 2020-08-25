@@ -229,6 +229,29 @@ footer {
   padding-top:10px;
 }
 
+/***** Checkout *****/
+.btn span.glyphicon {    			
+	opacity: 0;				
+}
+.btn.active span.glyphicon {				
+	opacity: 1;				
+}
+
+
+.btn{
+    color:#FFFFFF !important;
+    background-color:#009ABB !important;
+    margin:5px 33px 0px 25px;
+    padding:9px 15px 10px 15px !important;
+    font-size: 2rem !important;
+    border-radius:24px !important;
+}
+
+.btn:hover{
+    color:#FFFFFF !important;
+    background-color:#007C92;
+}
+
 /***** Media Queries *****/ 
 
 @media only screen and (max-width: 321px){

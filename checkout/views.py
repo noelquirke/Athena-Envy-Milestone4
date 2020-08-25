@@ -53,24 +53,36 @@ def checkout(request):
             for char in b:
                 what_button = what_button.replace(char,"")
             refine_what_button = what_button.split(' ')
-            print(refine_what_button[3])
 
             cronofy = pycronofy.Client(access_token= os.getenv("PYCRONOFY_TOKEN"))
             event = {
             'calendar_id': "cal_XYjaVHVZYgBgrZFs_aHPIMeIFb5S5cDeMuyRG6w",
             'event_uid': refine_what_button[3],
-            'summary': "Yes",
-            'description': "Bingo",
-            'start': refine_what_button[9],
-            'end': refine_what_button[11],
+            'summary': "Your Booking with Athena Envy",
+            'description': "A Booking has been made, Username:  " + request.user.username  + " email: " + request.user.email,
+            'start': refine_what_button[10],
+            'end': refine_what_button[12],
             'tzid': 'Europe/Dublin',
             'location': {
-                'description': "email:  " + request.user.email + "  Username:  " + request.user.username 
-            }
+                'description': "email:  " + request.user.email + "  Username:  " + request.user.username,
+                },
+                "attendees": {
+                    "invite": [
+                      {
+                        "email": request.user.email,
+                        "display_name": "Your Booking with Athena Envy"
+                      }
+                    ],
+                },
+                 "reminders": [
+                    { "minutes": 60 },
+                    { "minutes": 1440 },
+                    { "minutes": 15 }
+                  ]
+
             }
             cronofy.upsert_event(calendar_id='cal_XYjaVHVZYgBgrZFs_aHPIMeIFb5S5cDeMuyRG6w', event=event)
             request.session['cart'] = {}
-            messages.success(request, 'Thank you for your book!')
             return render(request, 'success.html')
         else:
             messages.error(request, "Unable to take payment")
@@ -80,17 +92,34 @@ def checkout(request):
 else:
     print(payment_form.errors)
     messages.error(request, "We were unable to take a payment with that card!") 
+else:
+        user_details = {'full_name': request.user.first_name + " " + request.user.last_name}
+        payment_form = MakePaymentForm()
+        order_form = OrderForm(user_details)
 
-get_date = datetime.now() + timedelta(days=1)
-start_date = datetime.strftime(get_date, '%Y-%m-%dT%H:%M:%SZ')
-future_date = datetime.now() + timedelta(days=14)
-end_date = datetime.strftime(future_date, '%Y-%m-%dT%H:%M:%SZ')
-print(start_date, end_date)
-cronofy = pycronofy.Client(access_token= os.getenv("PYCRONOFY_TOKEN"))
-events = cronofy.read_events(
-from_date = start_date,
-to_date = end_date,
-tzid='Europe/Dublin')
-refine_data = (events.json())
-data = refine_data
-return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'data': refine_data})
+    cart = request.session.get('cart', {})
+    what_calendar = []
+    if '1' in cart:
+        what_calendar = ['cal_XYjaVHVZYgBgrZFs_HEpo3dw86uG4SHGyFZb0lA']
+    elif '2' in cart:
+        what_calendar = ['cal_XYjaVHVZYgBgrZFs_dUC2DLLCz8SKCrL07bzZmg']
+    elif '3' in cart:
+        what_calendar = ['cal_XYjaVHVZYgBgrZFs_dzk27HOsMzv32vRQOsmyaQ']    
+    get_date = datetime.now() + timedelta(days=1)
+    start_date = datetime.strftime(get_date, '%Y-%m-%dT%H:%M:%SZ')
+    future_date = datetime.now() + timedelta(days=20)
+    end_date = datetime.strftime(future_date, '%Y-%m-%dT%H:%M:%SZ')
+    cronofy = pycronofy.Client(access_token= os.getenv("PYCRONOFY_TOKEN"))
+    events = cronofy.read_events(
+    calendar_ids = what_calendar,    
+    from_date = start_date,
+    to_date = end_date,
+    tzid='Europe/Dublin')
+    refine_data = (events.json())
+    return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'data': refine_data})
+    ###List Current Calendars, needed if adding further products to the range at a later date####
+    #cronofy = pycronofy.Client(access_token= os.getenv("PYCRONOFY_TOKEN"))
+    #calendars = cronofy.list_calendars()
+    #data = (calendars)
+    #print(data)
+        #return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'data': refine_data}) 
