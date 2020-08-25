@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid flatpage-content">
+<h1 class="col-6 mx-auto text-center heading">About Us</h1>
+<br>
+<div class="row ">
+    <img class="col-sm-8 col-md-4" id="couple-photo" src="#">
+    </img>
+    <div class="col-sm-8" id="couple-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac gravida lorem. Duis posuere urna vel urna finibus, non tempus elit elementum. Nullam finibus, nulla a scelerisque porta, mi quam vestibulum velit, et dapibus diam massa ullamcorper dui. Donec lobortis nibh a finibus condimentum. Morbi eu tempor nulla, et posuere urna. Sed dolor massa, facilisis id purus id, vestibulum blandit est. Vestibulum auctor ut leo et finibus. Nunc egestas lacus ac nulla viverra dictum. Integer sollicitudin metus maximus lorem pellentesque, et luctus dui consectetur. Vestibulum in ex vel ante lobortis tristique. Vivamus pulvinar diam nec tortor ornare, a commodo lacus fringilla. Donec cursus placerat dolor, et lacinia tellus accumsan scelerisque. Morbi vitae elit blandit, pretium tortor ac, rhoncus nibh.</div>
+    </div>
+    <br>
+
+    <h1 class="col-6 mx-auto text-center heading">Our Services</h1>
+    {% load flatpages %}
+{% get_flatpages as flatpages %}
+
+    {% for page in flatpages %}
+        <h3 class="col-6 mx-auto text-center sub-heading">{{ page.title }}</h3>
+        <div class="col-12 mx-auto" id="couple-text">{{ page.content }}</div>
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

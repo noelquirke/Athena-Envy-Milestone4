@@ -27,6 +27,8 @@ SECRET_KEY = '=i+=hv-ij+@9!^o5-xbxa=wsv*nlys_#*fau-e+$+6$dbv)-&l'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+SITE_ID = 1
+
 ALLOWED_HOSTS = []
 
 
@@ -40,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.flatpages',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',

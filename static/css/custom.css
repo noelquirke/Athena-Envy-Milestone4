@@ -160,6 +160,42 @@ footer {
   display:none;
 }
 
+/***** About Us *****/
+
+.flatpage-content{
+  margin-top:100px;
+}
+
+.heading{
+  color:black;
+  font-weight:bold;
+  border-bottom:5px solid #009ABB;
+  font-size:30px;
+}
+
+#couple-photo{
+  height:260px;
+  width:auto;
+}
+
+#couple-text{
+  font-size:18px;
+  padding-top:10px;
+}
+
+.sub-heading{
+  margin-top:30px;
+  color:#707780;
+  font-weight:bold;
+  font-size:40px;
+}
+
+/***** Cart *****/
+
+#cart-container{
+  padding:75px;
+}
+
 /***** Media Queries *****/
 
 @media only screen and (max-width: 321px){
