@@ -23,23 +23,65 @@
                     <h3>{{ item.product.name }}</h3>
                     <p class="product-description">{{ item.product.description }}</p>
                     <p>{{ item.quantity }}</p>
-                    <p>item.product.price</p>
+                    <p>{{ item.product.price }}</p>
                 </div>
             </div>
         </div>
     {% endfor %}
 </div>
-<div class="form-group">
-                            {% for data.events[0].start[0:13] in data %}
-                              <button>{{ data }}</button>
-                            {% endfor %}
-</div>
 <div class="row">
     <p>Total</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>
 </div>
-
 <form role="form" method="post" id="payment-form" action="{% url 'checkout' %}">
+<div class="btn-group-toggle" data-toggle="buttons">
+                            {% if data.events.0 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.0 }}">
+                            {{ data.events.0.start|slice:":10"}} at {{ data.events.0.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.1 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.1 }}">
+                            {{ data.events.1.start|slice:":10"}} at {{ data.events.1.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.2 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.2 }}">
+                            {{ data.events.2.start|slice:":10"}} at {{ data.events.2.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.3 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.3.event_uid }}">
+                            {{ data.events.3.start|slice:":10"}} at {{ data.events.3.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.4 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.4.event_uid }}">
+                            {{ data.events.4.start|slice:":10"}} at {{ data.events.4.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.5 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.5.event_uid }}">
+                            {{ data.events.5.start|slice:":10"}} at {{ data.events.5.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.6 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.6.event_uid }}">
+                            {{ data.events.6.start|slice:":10"}} at {{ data.events.6.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.7 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.7.event_uid }}">
+                            {{ data.events.7.start|slice:":10"}} at {{ data.events.7.start|slice:"11:16"}}</label>
+                            {% endif %}
+                            {% if data.events.8 is not None  %}
+                            <label class="btn btn-primary active">
+                            <input type="checkbox" checked autocomplete="off" name="what-button" value="{{ data.events.8.event_uid }}">
+                            {{ data.events.8.start|slice:":10"}} at {{ data.events.8.start|slice:"11:16"}}</label>
+                            {% endif %}
+                        </div>
+
     <legend>Payment Details</legend>
 
     <div id="credit-card-errors" style="display: none;">
