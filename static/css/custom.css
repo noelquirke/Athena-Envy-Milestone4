@@ -176,6 +176,10 @@ footer {
   font-size:medium;
 }
 
+.messages{
+  margin-top: 80px;
+}
+
 /***** About Us *****/
 
 .flatpage-content{
@@ -195,7 +199,7 @@ footer {
 }
 
 #couple-text{
-  font-size:18px;
+  font-size:15px;
   padding-top:10px;
 }
 
@@ -206,18 +210,26 @@ footer {
   font-size:40px;
 }
 
+.footer-margin{
+  margin-bottom: 50px;
+}
 /***** Cart *****/
 
-#cart-container{
-  padding:75px;
+#cart-container {
+ margin-top:74px;
 }
 
-/***** Media Queries *****/
-@media only screen and (min-width: 639px){
-.navbar-toggler {
-  margin-left: 333px;
+#cart-image {
+  height:250px;
+  width:auto;
 }
-} 
+
+#cart-text {
+  font-size:15px;
+  padding-top:10px;
+}
+
+/***** Media Queries *****/ 
 
 @media only screen and (max-width: 321px){
 .navbar-toggler {
@@ -228,5 +240,21 @@ footer {
 @media only screen and (max-width: 412px){
 .background-highlight-two {
   font-size: 200%;
+}
+
+#cart-text{
+  font-size:14px;
+}
+}
+
+@media only screen and (min-width: 639px){
+.navbar-toggler {
+  margin-left: 333px;
+}
+
+@media only screen and (max-width: 767px){
+ .card-img-top{
+  max-width: 350px;
+} 
 }
 }

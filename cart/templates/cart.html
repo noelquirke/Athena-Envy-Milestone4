@@ -3,24 +3,18 @@
 {% load bootstrap_tags %}
 
 {% block content %}
+{% csrf_token %}
     {% for item in cart_items %}
-    <div id="cart-container" class="col-lg-4 col-md-7 mb-4 mx-auto">
-                <div class="card border-0">
-                    <img class="card-img-top" src="{{ MEDIA_URL }}{{ item.product.image }}" alt="Card image cap">
-                    <h4 class="card-header">{{ item.product.name }}</h4>
-                    <div class="card-body card-body-main">
-                        <p class="card-text p-0 ">{{ item.product.description }}</p>
-                    </div>
-                    <div class="card-body card-body-price">
-                        <p class="card-text font-weight-bold p-0">€{{ item.product.price }} per session</p>
-                    </div>
-
-    {% endfor %}
-
-                </div>
+    <div id="cart-container">
+        <h1 class="col-6 mx-auto text-center heading">{{ item.product.name }}</h1>
     </div>
-<div class="">
-    <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
-</div>
+    <br>
+    <div class="container-fluid mx-auto text-center">
+        <img id="cart-image" class="mx-auto" src="{{ MEDIA_URL }}{{ item.product.image }}"></img>
+        <p class="col-lg-8 col-sm-12 text-center m-2" id="cart-text">{{ item.product.long_description }}</p>
+        <h3 class="card-header form-header">€{{ item.product.price }} per session</h3>
+        <a class="nav-link book-button col-8 mx-auto" href="{% url 'checkout' %}"><i class="far fa-bookmark"></i> Book Appointment</a>
+    </div>
+    {% endfor %}
 
 {% endblock %}
