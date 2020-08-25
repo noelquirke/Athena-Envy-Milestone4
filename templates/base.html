@@ -15,7 +15,7 @@
     {% block corecss %}
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Roboto:wght@500&display=swap">
         <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% endblock %}
 
@@ -23,8 +23,7 @@
     {% endblock %}
 
     {% block corejs %}
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://kit.fontawesome.com/e9073f4741.js" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
@@ -34,42 +33,50 @@
     {% endblock %}
 
     <title>Athena Envy {% block extra_title %}{% endblock %}</title>
+    <link rel="icon" href="#">
   </head>
   <body>
     <header class="container-fluid fixed top">
-        <!-- Fixed masthead -->
-        <nav class="navbar navbar-masthead navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">Athena Envy</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav navbar-right">
-                        {% if user.is_authenticated %}
-                            <li><a href="{% url 'profile' %}">Profile</a></li>
-                            <li><a href="{% url 'logout' %}">Log Out</a></li>
-                        {%  else %}
-                            <li><a href="{% url 'register' %}">Register</a></li>
-                            <li><a href="{% url 'login' %}">Log In</a></li>
-                        {% endif %}
-                        <li>
-                            <a href="{% url 'view_cart' %}">
-                                <i class="fa fa-shipping-cart"></i>Cart
-                                {% if product_count > 0 %}
-                                <label class="badge badge-warning">{{ product_count }}</label>
-                                {% endif %}
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+        <!-- Fixed Navbar -->
+        <nav class="navbar navbar-light navbar-expand-md fixed-top">
+        <div class="container dropdown-padding">
+            <a class="navbar-brand" href="{% url 'index' %}"></a>
+        <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+            <div class="collapse navbar-collapse mx-auto" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{% url 'profile' %}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{% url 'profile' %}">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="{% url 'profile' %}">Contact Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link book-button text-center" href="{% url 'profile' %}">Book Appointment</a>
+                    </li> 
+                </ul>
             </div>
-        </nav>
+        <ul class="navbar-nav ml-auto">
+        <li class="social-icons">
+          <a class="social-icon d-none d-lg-block" href="https://www.facebook.com/TheJonesMusic/" target="_blank"><i class="fab fa-facebook-square"></i></a>
+        </li>
+        <li class="social-icons">
+          <a class="social-icon d-none d-lg-block" href="https://www.snapchat.com/l/en-gb/"  target="_blank"><i class="fab fa-snapchat-square"></i></a>
+        </li>
+        <li class="social-icons">
+          <a class="social-icon d-none d-lg-block" href="https://www.youtube.com/channel/UCQ13In3Mv5xRHKAYHWxePRA"  target="_blank"><i class="fab fa-youtube-square"></i></a>
+        </li>
+        <li class="social-icons">
+          <a class="social-icon d-none d-lg-block" href="https://twitter.com/?lang=en"  target="_blank"><i class="fab fa-twitter-square"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
     </header>
         {% if messages %}
             <div class="alert alert-success">
@@ -80,14 +87,6 @@
                 </div>
             </div>
         {% endif %}
-        <div class="container">
-            <div class="display">
-                <form action="{% url 'search' %}" method="get">
-                    <input type="text" name="q">
-                    <button type="search">Search</button>
-                </form>
-            </div>
-        </div>
 
         {% block page_header %}
         {% endblock %}
