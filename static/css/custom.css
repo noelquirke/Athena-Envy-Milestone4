@@ -104,20 +104,54 @@ footer {
     padding-top: 20px;
 } 
 
-@media only screen and (max-width: 380px){
-.background-highlight-one {
-  font-size: 280%;
+/***** Product Cards *****/
+
+.card-img-top{
+   max-height:190px;
 }
-.background-highlight-two {
-  font-size: 216%;
+
+.card-header{
+  color: #707780;
+  font-weight: bold;
+  background-color:#FFFFFF !important;
+  font-size: large;
+}
+
+.card-body-main {
+  min-height: 180px;
+  color: black;
+  padding:16px 5px;
+  font-size: medium;
+  background-color:#FFFFFF !important;
+
+}
+
+.card-body-price {
+  color: black;
+  padding:16px 5px;
+  font-size: medium;
+  background-color:#FFFFFF !important;
+}
+
+.card-footer {
+  width: 100%;
+  display: block;
+  background-color:#007C92 !important;
+  color:#FFFFFF !important;
+  font-size: 15px;
+  margin:0;
+}
+
+/***** Media Queries *****/
+
+@media only screen and (max-width: 321px){
+.navbar-toggler {
+  margin-left: 16px;
 }
 }
 
-.product {
-    background-size: contain;
-    background-position: center center;
-    background-repeat: no-repeat;
-    width: 150px;
-    height: 150px;
-    margin: 0px auto;
+@media only screen and (max-width: 412px){
+.background-highlight-two {
+  font-size: 200%;
+}
 }
