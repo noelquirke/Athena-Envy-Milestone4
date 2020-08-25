@@ -29,6 +29,11 @@
         </div>
     {% endfor %}
 </div>
+<div class="form-group">
+                            {% for data.events[0].start[0:13] in data %}
+                              <button>{{ data }}</button>
+                            {% endfor %}
+</div>
 <div class="row">
     <p>Total</p>
     <p><span class="glyphicon glyphicon-euro" aria-hidden="true"></span>{{ total }}</p>

@@ -7,17 +7,20 @@
     <div id="cart-container" class="col-lg-4 col-md-7 mb-4 mx-auto">
                 <div class="card border-0">
                     <img class="card-img-top" src="{{ MEDIA_URL }}{{ item.product.image }}" alt="Card image cap">
-                    <h4 class="card-header">{{ product.name }}</h4>
+                    <h4 class="card-header">{{ item.product.name }}</h4>
                     <div class="card-body card-body-main">
                         <p class="card-text p-0 ">{{ item.product.description }}</p>
                     </div>
                     <div class="card-body card-body-price">
                         <p class="card-text font-weight-bold p-0">€{{ item.product.price }} per session</p>
                     </div>
+
     {% endfor %}
+
                 </div>
     </div>
-<div class="row">
+<div class="">
     <a href="{% url 'checkout' %}" class="btn btn-success" role="button"><span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>Checkout</a>
 </div>
+
 {% endblock %}
