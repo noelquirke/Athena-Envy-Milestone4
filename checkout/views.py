@@ -53,10 +53,10 @@ def checkout(request):
             for char in b:
                 what_button = what_button.replace(char,"")
             refine_what_button = what_button.split(' ')
+            print(refine_what_button)
 
             cronofy = pycronofy.Client(access_token= os.getenv("PYCRONOFY_TOKEN"))
             event = {
-            'calendar_id': "cal_XYjaVHVZYgBgrZFs_aHPIMeIFb5S5cDeMuyRG6w",
             'event_uid': refine_what_button[3],
             'summary': "Your Booking with Athena Envy",
             'description': "A Booking has been made, Username:  " + request.user.username  + " email: " + request.user.email,
@@ -64,7 +64,7 @@ def checkout(request):
             'end': refine_what_button[12],
             'tzid': 'Europe/Dublin',
             'location': {
-                'description': "email:  " + request.user.email + "  Username:  " + request.user.username,
+                'description': "email:  " + request.user.email + "  Username:  " + request.user.first_name + " " + request.user.last_name,
                 },
                 "attendees": {
                     "invite": [
@@ -81,9 +81,38 @@ def checkout(request):
                   ]
 
             }
-            cronofy.upsert_event(calendar_id='cal_XYjaVHVZYgBgrZFs_aHPIMeIFb5S5cDeMuyRG6w', event=event)
-            request.session['cart'] = {}
-            return render(request, 'success.html')
+                event_2 = {
+                'event_uid': refine_what_button[3],
+                'summary': "Your Booking with C&K Physio",
+                'description': "A Booking has been made, Username:  " + request.user.username  + " email: " + request.user.email,
+                'start': refine_what_button[22],
+                'end': refine_what_button[24],
+                'tzid': 'Europe/Dublin',
+                'location': {
+                    'description': "email:  " + request.user.email + "  Username:  " + request.user.first_name + " " + request.user.last_name, 
+                },
+                "attendees": {
+                    "invite": [
+                      {
+                        "email": request.user.email,
+                        "display_name": "Your Booking with C&K Physio"
+                      }
+                    ],
+                },    
+                 "reminders": [
+                    { "minutes": 60 },
+                    { "minutes": 1440 },
+                    { "minutes": 15 }
+                  ]
+                }
+                try:
+                    cronofy.upsert_event(calendar_id = refine_what_button[1], event=event)
+                    request.session['cart'] = {}
+                    return render(request, 'success.html')
+                except:
+                    cronofy.upsert_event(calendar_id = refine_what_button[1], event=event_2)
+                    request.session['cart'] = {}
+                    return render(request, 'success.html')    
         else:
             messages.error(request, "Unable to take payment")
     else:
@@ -122,4 +151,3 @@ else:
     #calendars = cronofy.list_calendars()
     #data = (calendars)
     #print(data)
-        #return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'data': refine_data}) 

@@ -252,6 +252,18 @@ footer {
     background-color:#007C92;
 }
 
+#alert{
+  display: none;
+}
+
+.has-error .control-label{
+  color: black !important;
+}
+
+.has-error .form-control{
+  border-color: #ced4da !important;
+}
+
 /***** Media Queries *****/ 
 
 @media only screen and (max-width: 321px){

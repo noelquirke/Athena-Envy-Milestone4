@@ -1,12 +1,18 @@
 $(function() {
     $("#payment-form").submit(function() {
-        var form = this;
-        var card = {
-            number: $("#id_credit_card_number").val(),
-            expMonth: $("#id_expiry_month").val(),
-            expYear: $("#id_expiry_year").val(),
-            cvc: $("#id_cvv").val()
-        };
+        if ($("input:radio[name='what-button']").is(":checked")) {
+            var form = this;
+            var card = {
+                number: $("#id_credit_card_number").val(),
+                expMonth: $("#id_expiry_month").val(),
+                expYear: $("#id_expiry_year").val(),
+                cvc: $("#id_cvv").val()
+            };
+        }
+        else {
+            $("#alert").css('display', 'block');
+            return false;
+        }
 
     Stripe.createToken(card, function(status, response) {
         if (status === 200) {
