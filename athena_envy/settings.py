@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 
 import os
+import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
@@ -22,12 +23,12 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p2n1aum2w4f+!z0)5eudtz279!(z1o4o@xvt$j)gu$6jnp!jts'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [os.getenv('C9_HOSTNAME'), '4a4b530879a04ade88384b1734bb416a.vfs.cloud9.eu-west-1.amazonaws.com']
 
 
 # Application definition
@@ -45,7 +46,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'products',
     'cart',
-    'search',
+    'checkout',
 ]
 
 MIDDLEWARE = [
@@ -157,5 +158,8 @@ STATICFILES_DIRS = (
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+STRIPE_PUBLISHABLE = os.getenv('STRIPE_PUBLISHABLE')
+STRIPE_SECRET = os.getenv('STRIPE_SECRET')
 
 MESSAGE_STORAGE = 'django.contrib.messages.storage.session.SessionStorage'
