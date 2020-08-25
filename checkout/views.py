@@ -93,4 +93,4 @@ to_date = end_date,
 tzid='Europe/Dublin')
 refine_data = (events.json())
 data = refine_data
-return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'data': data})   
+return render(request, "checkout.html", {'order_form': order_form, 'payment_form': payment_form, 'publishable': settings.STRIPE_PUBLISHABLE, 'data': refine_data})

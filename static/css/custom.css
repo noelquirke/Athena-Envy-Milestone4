@@ -63,6 +63,11 @@ body {
     color:#009ABB;
 }
 
+#center-nav{
+  margin-left: 0;
+  right:7px;
+}
+
 /***** Carousel *****/
 .carousel{
     margin-top:65px;
@@ -88,6 +93,21 @@ body {
   font-weight: bold;
   height:120px;
 }
+
+.carousel-button{
+    color:#FFFFFF !important;
+    font-size: 15px;
+    background-color:#A175AA;
+    margin:5px 33px 0px 0px;
+    padding:9px 15px 10px 15px !important;
+    border-radius:24px;
+}
+
+.carousel-button:hover{
+    color:#FFFFFF !important;
+    background-color:#84608C;
+}
+
 footer {
     margin-top: 40px;
     padding-top: 40px;
@@ -193,6 +213,11 @@ footer {
 }
 
 /***** Media Queries *****/
+@media only screen and (min-width: 639px){
+.navbar-toggler {
+  margin-left: 333px;
+}
+} 
 
 @media only screen and (max-width: 321px){
 .navbar-toggler {
