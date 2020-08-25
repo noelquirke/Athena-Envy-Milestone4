@@ -1,4 +1,4 @@
-{% load static %}
+{% load staticfiles %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -15,6 +15,8 @@
     {% block corecss %}
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% endblock %}
 
     {% block extracss %}
@@ -85,14 +87,7 @@
                     <button type="search">Search</button>
                 </form>
             </div>
-        {% block content %} 
-        {% endblock %}
         </div>
-        <footer>
-            <div class="container">
-                <p>Made for educational purpose only as part of Code institute FullStack Developer program</p>
-            </div>
-        </footer>
 
         {% block page_header %}
         {% endblock %}
@@ -102,5 +97,11 @@
 
         {% block postloadjs %}
         {% endblock %}
+    
+        <footer>
+            <div class="container">
+                <p>Made for educational purpose only as part of Code institute FullStack Developer program</p>
+            </div>
+        </footer>
   </body>
 </html>
