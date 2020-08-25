@@ -9,21 +9,21 @@
                     <div class="carousel-caption">
                         <h2 class="background-highlight-one text-left"> Title TEXTTEXTTEXT</h2>
                         <h3 class="background-highlight-two text-left">Body TEXTTEXTTEXT <br> Since 2006</h3> 
-                        <a class="nav-link book-button col-sm-4" href="{% url 'profile' %}"><i class="far fa-bookmark"></i>  Book Appointment</a>
+                        <a class="nav-link book-button col-md-6 col-sm-6" href="{% url 'profile' %}"><i class="far fa-bookmark"></i>  Book Appointment</a>
                     </div>
                 </div>
                 <div class="carousel-item" style="background-image: url('/media/images/pilates.jpg')">
                     <div class="carousel-caption">
                         <h2 class="background-highlight-one text-left">Title TEXTTEXTTEXT</h2>
                         <h3 class="background-highlight-two text-left">Body TEXTTEXTTEXT <br>TEXTTEXTTEXT <strong>TEXTTEXTTEXT</strong> TEXTTEXTTEXT<strong>TEXTTEXTTEXT</strong></h3> 
-                        <a class="nav-link book-button col-sm-4" href="{% url 'profile' %}"><i class="far fa-bookmark"></i>  Book Appointment</a>
+                        <a class="nav-link book-button col-md-6 col-sm-6" href="{% url 'profile' %}"><i class="far fa-bookmark"></i>  Book Appointment</a>
                     </div>
                 </div> 
                 <div class="carousel-item" style="background-image: url('/media/images/norma-boots.jpg')">
                     <div class="carousel-caption">
                         <h2 class="background-highlight-one text-left">Title TEXTTEXTTEXT</h2>
                         <h3 class="background-highlight-two text-left">Body TEXTTEXTTEXT<br>TEXTTEXTTEXT</h3> 
-                        <a class="nav-link book-button col-sm-4" href="{% url 'profile' %}"><i class="far fa-bookmark"></i>  Book Now</a>
+                        <a class="nav-link book-button col-md-6 col-sm-6" href="{% url 'profile' %}"><i class="far fa-bookmark"></i>  Book Now</a>
                     </div>
                 </div> 
             </div> 
@@ -37,44 +37,26 @@
             </a>
         </div>
     </header>
-    <div class="row row-flex">
-        {% for product in products %}
-            <div class="col-xs-10 col-xs-offset-1 col-sm-offset-0 col-sm-6 col-md-4 display panel panel-default">
-                <div class="panel-body">
-                    <div class="product" style="background-image: url('{{ MEDIA_URL }}{{ product.image }}')"></div>
-
-                    <h3>{{ product.name }}</h3>
-                    <p class="product-description">{{ product.description }}</p>
-                    <p>{{ product.price }}</p>
-
-                    <form method="post" action="{% url 'add_to_cart' product.id %}">
-                        {% csrf_token %}
-                        <div class="input-group">
-                            <span class="input-group-btn">
-                                <button class="btn btn-success" type="submit">Add</button>
-                            </span>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        {% endfor %}
-    </div>
+    <br>
     <article class="container">
         <div class="row">
             <!-- Gets the top 4 most liked recipes from the database and displays them as an individual card to the user -->
             {% for product in products %} 
-            <div class="col-lg-3 col-md-6 mb-4">
-                <div class="card text-white bg-gradient-1">
-                    <img class="card-img-top" src= {{ MEDIA_URL }}{{ product.image }} alt="Card image cap">
-                    <h4 class="card-header text-capitalize">{{ product.name }}</h4>
-                    <div class="card-body">
-                        <p class="card-text p-0">{{ product.description }}</p>               
+            <div class="col-lg-4 col-md-7 mb-4 mx-auto">
+                <div class="card border-0">
+                    <img class="card-img-top" src="{{ MEDIA_URL }}{{ product.image }}" alt="Card image cap">
+                    <h4 class="card-header">{{ product.name }}</h4>
+                    <div class="card-body card-body-main">
+                        <p class="card-text p-0 ">{{ product.description }}</p>
                     </div>
+                    <div class="card-body card-body-price">
+                        <p class="card-text font-weight-bold p-0">€{{ product.price }} per session</p>           
+                </div>
                 <form method="post" action="{% url 'add_to_cart' product.id %}">
                         {% csrf_token %}
-                        <div class="input-group">
+                        <div>
                             <span class="input-group-btn">
-                                <button class="btn btn-success" type="submit">Add</button>
+                                <button class="card-footer" type="submit">Book Now</button>
                             </span>
                         </div>
                 </form>
