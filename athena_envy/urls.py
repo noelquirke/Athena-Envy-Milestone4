@@ -18,7 +18,7 @@ from django.urls import path, include
 from products import urls as urls_products
 from cart import urls as urls_cart
 from search import urls as urls_search
-from checkout import urls as urls_checkout
+# from checkout import urls as urls_checkout
 from products.views import all_products
 from django.views import static
 from .settings import MEDIA_ROOT
