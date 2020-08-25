@@ -17,7 +17,6 @@ from django.contrib import admin
 from django.urls import path, include
 from products import urls as urls_products
 from cart import urls as urls_cart
-from search import urls as urls_search
 from contact import urls as urls_contact
 from checkout import urls as urls_checkout
 from django.contrib.flatpages import views
@@ -32,7 +31,6 @@ urlpatterns = [
     url(r'^products/', include(urls_products)),
     url(r'^cart/', include(urls_cart)),
     url(r'^checkout/', include(urls_checkout)),
-    url(r'^search/', include(urls_search)),
     url(r'^contact/', include(urls_contact)),
     url(r'^about/', views.flatpage, {'url': '/about/'}, name='about'),
     url(r'^media/(?P<path>.*)$', static.serve, {'document_root': MEDIA_ROOT})

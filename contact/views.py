@@ -2,7 +2,7 @@ from django.shortcuts import render
 from .forms import ContactForm
 from django.core.mail import send_mail, EmailMessage, EmailMultiAlternatives
 from django.contrib import messages
-import env
+# import env
 
 # Create your views here.
 
