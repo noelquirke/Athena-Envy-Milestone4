@@ -23,6 +23,7 @@ from django.contrib.flatpages import views
 from products.views import all_products
 from django.views import static
 from .settings import MEDIA_ROOT
+from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),

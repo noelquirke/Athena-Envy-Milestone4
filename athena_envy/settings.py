@@ -10,8 +10,17 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-import dj_database_url
+
 import os
+import sys
+
+import dj_database_url  # noqa: F401
+# Uses env.py for environment variales when local
+try:
+    import env  # noqa: F401
+except ModuleNotFoundError:
+    # Error handling
+    pass
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -49,7 +58,6 @@ INSTALLED_APPS = [
     'cart',
     'checkout',
     'contact',
-    'storages',
 ]
 
 MIDDLEWARE = [
