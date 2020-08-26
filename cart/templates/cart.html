@@ -17,4 +17,25 @@
     </div>
     {% endfor %}
 
+{% endblock %}{% extends 'base.html' %}
+{% load bootstrap_tags %}
+<!-- Cart template, user can see more information on the appointment and proceed to book if they wish  -->
+{% block content %}
+    {% csrf_token %}
+    {% for item in cart_items %}
+    <article id="cart-container">
+        <h1 class="col-6 mx-auto text-center heading">{{ item.product.name }}</h1>
+    </div>
+    <br>
+    <div class="container-fluid col-12 mx-auto text-center">
+        <img id="cart-image" class="col-lg-4 col-sm-5 mx-auto" src="{{ MEDIA_URL }}{{ item.product.image }}"></img>
+        <p class="col-lg-7 col-md-12 text-center m-2" id="cart-text">{{ item.product.long_description }}</p>
+    </div>
+    <div class="container-fluid col-12 text-center mx-auto">
+        <h3 class="card-header col-12 form-header">€{{ item.product.price }} per session</h3>
+        <a class="nav-link book-button col-6 text-center mx-auto" href="{% url 'checkout' %}"><i class="far fa-bookmark"></i> Book Appointment</a>
+    </article>    
+    
+    {% endfor %}
+
 {% endblock %}

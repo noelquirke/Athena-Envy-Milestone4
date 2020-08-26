@@ -1,10 +1,25 @@
 {% extends "base.html" %}
+
+<!-- Redirects user to homepage after 7 seconds -->
+{% block head_js %}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+    // Handler for .ready() called.
+    window.setTimeout(function () {
+        location.href = "/";
+    }, 7000);
+});
+    
+</script>
+
+{% endblock %}
+
 {% block content %}
 
+<!-- A success page confirming the user has booked an appontment succesfully-->
 <div class="accountform text-center">
-    <h1 class="card-header form-header">Thank you for your booking.<br>An email has been sent to you as a reminder.</h1>
-    <a class="nav-link book-button col-6 mx-auto text-center" href="/">Go To Homepage</a>
-    <p></p>
-</div>
+    <h1 class="card-header form-header">Thank you for your booking.<br>An email has been sent to you as a reminder. <br> You will be redirected to the homepage shortly.</h1>
+</div> 
 
 {% endblock %}
