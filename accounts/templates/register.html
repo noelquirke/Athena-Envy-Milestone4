@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %} 
+{% load bootstrap_tags %}
+
+{% block head_js %}
+<script type="text/javascript" src="{% static 'js/form.js' %}"></script> <!-- Import the form.js file -->
+{% endblock %}
+<!-- Registration form allows users to login and book appointments -->
+{% block content %}
+    <form method="post" action="{% url 'register' %}" class="accountform">
+        <fieldset class="form-group-lg col-6 mx-auto">
+            <legend class="card-header form-header">Create a new account</legend>
+            <p>Already got an account? <a href="{% url 'login' %}">Sign In</a> </p>
+                {% csrf_token %}
+                {{  user_form | as_bootstrap }}
+            <button type="submit" id="create-account" class="book-button col-12 account-page-button">Create account</button>
+        </fieldset>
+    </form>
+{% endblock %}

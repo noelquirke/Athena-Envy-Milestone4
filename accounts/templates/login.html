@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+
+<!-- The login page, the user can login or go to the register page from here -->
+{% block content %}
+    <form method="post" action="{% url 'login' %}?next={{ next }}" class="accountform">
+        <fieldset class="form-group-lg col-6 mx-auto">
+            <legend class="card-header form-header">Login</legend>
+            {% csrf_token %}
+            {{ user_form | as_bootstrap }}
+            <p><a href="{% url 'password_reset' %}">Forgot my password</a></p>
+            <button type="submit" class="book-button col-12 account-page-button">Login</button>
+        </fieldset>
+        <p class="card-header form-header text-center border-0">OR</p>
+        <br>
+    </form>
+
+    <form action="{% url 'register' %}" class="col-12 mx-auto text-center">
+        <button type="submit"  class="book-button account-page-button col-6" >Register</button>  
+    </form>    
+{% endblock %}
